@@ -1,20 +1,59 @@
-
-
 Projekt testowy do sprawdzania procedury przekazania GAS do produkcji
-
 instaluje sie jako usluga dostepn przez http
-w imieniu konta scripts@xtrf.eu powinien wyslac email do usera o zadanym username
 
-wywolanie https://scriptURL?userName=[userName]
+1) W imieniu konta scripts@xtrf.eu powinien wyslac email do usera o zadanym username
+- wywolanie https://scriptURL?userName=[userName]
+2) periodycznie co 1 dzien wysyla email do dr@xtrf.eu
 
-Weryfikuje
- - ekspozycje skryptu jako WS API
- - dostep do uslug Google (EmailService)
- - TODO perdioci??
+
+Script Requirements
+a) script needs a specific permisions to be granted
+b) script needs to be published as a WebApplication
+c) script needs to be executed periodicaly
+register periodical execution of a method "executeDaily" to be executed daily at 00:00
+
+
+************  Installation details *********************
+
+1) Instalacja narzedzia do wpychania plików skryptu na GoogleDriva
+ a) zainstalowac nodejs / npm (minmalan wersja 6.0)
+ b) zainstalowac https://github.com/MaartenDesnouck/google-apps-script
+     npm i -g google-apps-script
+ c) zautentykowac skrypt dla konta scripts@xtrf.eu
+     gas auth -f
+   //otworzy sie przeglądarka z prośbą o login i hasło
+
+2) Przygotowanie projektu
+  a) sciagniecie aktulanej wersji projektu z gita
+    git clone [projectUrl]
+  
+3) synchronizowanie lokalnej wersji projektu z projektem na google
+  a) WEJDZ DO KATALOGU PROJEKTU
+    cd [projectName]
+
+  b) sprawdz czy projekt istnieje na googlu
+    gas list
+
+  c) (opcjonalnie) jeśli na googlu nie ma jeszcze projektu
+    gas create [projectName]
+
+  d) na google jest projekt (lub wlasnie go zrobiles w pkt c) naucz GAS ze aktulany katalog ma byc synchornizowany z tym projektem
+    gas link [projectName]
+
+  e) propagacja na dysk google
+    gas push 
+
+4) przetestuj nowo zdeployowany skrypt
+ a) otworz skrypt w przegladarce (mozna z dycku googla mozna z comandlina)
+   gas open
+
+ b) Otworz plik tests i wykonaj testy - uruchom metode "performTests"
  
+ c) Sprawdz w README projektu jakei ma wymagania (tak ten plik)
+ - byc potrzebne przyznanie skryptowi uprawnien
+ - być może trzeba zdeployować (jako WAR lub API) - zrob to
+ - być może trzeba skonfigurowac periodyczne wykonywnaie jakiejś metody - zrób to 
 
-
-Instalacja
 
 
 
